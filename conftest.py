@@ -29,6 +29,7 @@ def pytest_addoption(parser):
 
 
 def driver_factory(browser, brversion, executor, vnc, video, implicitly_wait):
+    """ Preparing the driver with the given parameters """
     if executor == "local":
         if browser == "chrome":
             service = chromeS(ChromeDriverManager().install())
