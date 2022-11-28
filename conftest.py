@@ -9,14 +9,14 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 
 def pytest_addoption(parser):
-    """ Parameters passed to the command line when running tests """
-    parser.addoption("--url", action="store", default="https://demo-opencart.com",  # "http://localhost:8080/opencart/"
-                     help="This is base application url")
+    """ Parameters passed to the command line when running test """
+    parser.addoption("--url", action="store", default="https://demo-opencart.ru",  # "http://localhost:8080/opencart/"
+                     help="This is base page_objects url")
     parser.addoption("--browser", action="store", default="chrome",
                      help="Choose browser: chrome, firefox, safari")
     parser.addoption("--wait", default=10,
                      help="This is time parameter for driver wait")
-    parser.addoption("--implicitly_wait", default=1,
+    parser.addoption("--implicitly_wait", default=3,
                      help="This is time parameter for driver implicitly wait")
     # parser.addoption("--log_file", default=None,
     #                  help="This is a file address, where selenium logs will be")
@@ -68,7 +68,7 @@ def driver_factory(browser, brversion, executor, vnc, video, implicitly_wait):
     return driver
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def browser(request):
     browser = request.config.getoption("--browser")
     brversion = request.config.getoption("--brversion")
@@ -81,23 +81,25 @@ def browser(request):
                             executor=executor, vnc=vnc, video=video,
                             implicitly_wait=implicitly_wait)
 
+    driver.t = request.config.getoption("--wait")
+    driver.base_url = request.config.getoption("--url")
+
     allure.attach(
         name="capabilities",
         body=str(driver.capabilities),
         attachment_type=allure.attachment_type.TEXT
     )
-
-    request.addfinalizer(driver.quit)
-    return driver
-
-
-@pytest.fixture(scope="function")
-def wait(browser, request):
-    wait = request.config.getoption("--wait")
-    return WebDriverWait(browser, wait)
+    yield driver
+    driver.quit()
 
 
-@pytest.fixture(scope="function")
-def url(request):
-    url = request.config.getoption("--url")
-    return url
+# @pytest.fixture(scope="function")
+# def wait(browser, request):
+#     wait = request.config.getoption("--wait")
+#     return WebDriverWait(browser, wait)
+
+
+# @pytest.fixture(scope="function")
+# def url(request):
+#     url = request.config.getoption("--url")
+#     return url
