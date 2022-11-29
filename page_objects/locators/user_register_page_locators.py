@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
 
 
-class UserAuthPageLocators:
-    """ Locators of the User authentication page of the opencart site """
+class UserRegisterPageLocators:
+    """ Locators of the User registration page of the opencart site """
 
     CONTENT_TITLE = (By.CSS_SELECTOR, "#content h1")
     LOGIN_LINK_IN_FORM = (By.CSS_SELECTOR, "#content a[href*='route=account/login']")
@@ -15,4 +15,12 @@ class UserAuthPageLocators:
     PASSWORD_FIELD = (By.CSS_SELECTOR, "#input-password")
     PASSWORD_CONFIRM_FIELD = (By.CSS_SELECTOR, "#input-confirm")
     AGREE_CHECKBOX = (By.CSS_SELECTOR, "[name='agree']")
-    CONTINUE_BUTTON = (By.CSS_SELECTOR, "input[type='submit'][value='Continue']")
+    CONTINUE_BUTTON = (By.CSS_SELECTOR, "input[type='submit'][value='Продолжить']")
+
+
+class UserLoginPageLocators:
+    """ Locators of the User login page of the opencart site """
+    CONTENT_TITLE = (By.CSS_SELECTOR, "#content h2")
+    EMAIL_FIELD = (By.CSS_SELECTOR, "#input-email")
+    PASSWORD_FIELD = (By.CSS_SELECTOR, "#input-password")
+    SUBMIT_BUTTON = (By.CSS_SELECTOR, "input[type='submit'][value='Войти']")

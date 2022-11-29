@@ -4,6 +4,8 @@ from opencart.page_objects.pages.main_page import MainPage
 from opencart.page_objects.pages.search_result_page import SearchResultPage
 from opencart.page_objects.pages.catalog_page import CatalogPage
 from opencart.page_objects.pages.product_page import ProductPage
+from opencart.page_objects.pages.user_register_page import UserRegisterPage
+from opencart.page_objects.pages.user_login_page import UserLoginPage
 
 
 class PageContainer:
@@ -14,3 +16,5 @@ class PageContainer:
         self.search_result = SearchResultPage(browser)
         self.catalog = CatalogPage(browser)
         self.product = ProductPage(browser)
+        self.user_register = UserRegisterPage(browser)
+        self.user_login = UserLoginPage(browser)

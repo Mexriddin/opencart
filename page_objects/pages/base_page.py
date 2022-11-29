@@ -43,8 +43,11 @@ class BasePage:
             ActionChains(self.browser).pause(0.3).move_to_element(element).click().perform()
 
     def _type(self, locator, value):
-        field = self._element(locator).click().clear()
-        field.send_keys(value)
+        """ Method for filling field """
+        with allure.step(f"Fill {locator}: {value}"):
+            field = self._element(locator)
+            field.clear()
+            field.send_keys(value)
 
     def close_security_alert(self):
         """ Closing warning window on page load """
