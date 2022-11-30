@@ -6,6 +6,7 @@ from opencart.page_objects.pages.catalog_page import CatalogPage
 from opencart.page_objects.pages.product_page import ProductPage
 from opencart.page_objects.pages.user_register_page import UserRegisterPage
 from opencart.page_objects.pages.user_login_page import UserLoginPage
+from opencart.page_objects.pages.admin_login_page import AdminLoginPage
 
 
 class PageContainer:
@@ -18,3 +19,4 @@ class PageContainer:
         self.product = ProductPage(browser)
         self.user_register = UserRegisterPage(browser)
         self.user_login = UserLoginPage(browser)
+        self.admin_login = AdminLoginPage(browser)

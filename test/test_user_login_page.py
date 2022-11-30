@@ -4,7 +4,7 @@ from opencart.tools.page_container import PageContainer
 
 
 @allure.feature("User Login Page")
-class TestUserRegisterPage:
+class TestUserLoginPage:
     """" Tests of the user login page of the opencart site """
 
     page = PageContainer(browser=None)
@@ -32,5 +32,5 @@ class TestUserRegisterPage:
         page = PageContainer(browser)
         browser.get(browser.base_url)
         page.user_login.go_to_user_login_page()
-        page.user_login.valid_user_login()
+        page.user_login.login_user(page.user_login.email, page.user_login.password)
         assert browser.title == "Личный Кабинет"

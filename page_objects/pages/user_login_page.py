@@ -12,6 +12,9 @@ class UserLoginPage(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
 
+    email = "test123@gmail.com"
+    password = "test123"
+
     def go_to_user_login_page(self):
         """ Method open user login page of the opencart site """
 
@@ -27,8 +30,8 @@ class UserLoginPage(BasePage):
             for locator in locators:
                 self._verify_element_presence(locator)
 
-    def valid_user_login(self):
+    def login_user(self, email, password):
         """ Login user on the user register page """
-        self._type(ll.EMAIL_FIELD, "test123@gmail.com")
-        self._type(ll.PASSWORD_FIELD, "test123")
+        self._type(ll.EMAIL_FIELD, email)
+        self._type(ll.PASSWORD_FIELD, password)
         self._click(ll.SUBMIT_BUTTON)

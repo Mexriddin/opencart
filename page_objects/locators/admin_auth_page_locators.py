@@ -9,5 +9,7 @@ class AdminAuthPageLocators:
     USERNAME_FIELD = (By.ID, "input-username")
     PASSWORD_FIELD = (By.ID, "input-password")
     LOGIN_BUTTON = (By.CSS_SELECTOR, 'button.btn')
+    LOGOUT_BUTTON = (By.CLASS_NAME, 'fa-sign-out')
     FORGOTTEN_PASSWORD_LINK = (By.CSS_SELECTOR, '.help-block')
     ERROR_MESSAGE = (By.CSS_SELECTOR, '.alert-dismissible')
+    ALERT_DANGER = (By.CLASS_NAME, 'alert-danger')

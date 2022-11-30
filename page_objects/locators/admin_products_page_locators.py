@@ -4,6 +4,9 @@ from selenium.webdriver.common.by import By
 class AdminProductsPageLocators:
     """ Locators of the admin products page of the opencart site """
 
+    CATALOG_MENU_ITEM = (By.ID, "menu-catalog")
+    PRODUCTS_MENU_ITEM = (By.CSS_SELECTOR, "#collapse1 > :nth-child(2)")
+
     COPY_BUTTON = (By.CSS_SELECTOR, ".fa-copy")
     ADD_NEW_BUTTON = (By.CSS_SELECTOR, ".fa-plus")
     DELETE_BUTTON = (By.CSS_SELECTOR, "button[data-original-title='Delete']")
