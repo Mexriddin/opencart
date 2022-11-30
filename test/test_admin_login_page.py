@@ -1,4 +1,5 @@
 import allure
+import pytest
 
 from opencart.tools.page_container import PageContainer
 from opencart.page_objects.locators.admin_auth_page_locators import AdminAuthPageLocators
@@ -36,11 +37,27 @@ class TestAdminLoginPage:
         page.admin_login.login_to_admin(page.admin_login.login, page.admin_login.password)
         assert browser.title == "Панель состояния"
 
-    @allure.title("Checking logged out of your admin account")
+    @allure.title("Checking invalid login an administrator ")
+    @pytest.mark.parametrize("login, password", [(page.admin_login.login, "1234"),
+                                                 ("wrong", page.admin_login.password),
+                                                 ("", ""),
+                                                 ("wrong", "1234")])
+    def test_login_to_admin_invalid(self, browser, login, password):
+        """ Checking invalid register a new user on the user login page """
+        page = PageContainer(browser)
+        browser.get(browser.base_url)
+        page.admin_login.go_to_admin_login_page()
+        page.admin_login.login_to_admin(login, password)
+        assert page.admin_login._verify_element_presence(AdminAuthPageLocators.ALERT_DANGER)
+
+    @allure.title("Checking logout from admin account")
     def test_logout_from_admin_account(self, browser):
-        """ Checking logged out of your admin account """
+        """ Checking logout from admin account """
         page = PageContainer(browser)
         browser.get(browser.base_url)
         page.admin_login.go_to_admin_login_page()
         page.admin_login.login_to_admin(page.admin_login.login, page.admin_login.password)
         page.admin_login.logout_from_admin()
+        assert page.admin_login.get_text_element(AdminAuthPageLocators.FORM_TITLE) == "Введите логин и пароль"
+
+

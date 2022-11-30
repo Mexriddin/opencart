@@ -5,8 +5,7 @@ from opencart.tools.page_container import PageContainer
 from opencart.page_objects.locators.search_page_locators import SearchPageLocators
 
 
-
-@allure.feature("Search Result page")
+@allure.feature("Search Result Page")
 class TestSearchResult:
     """ Tests of the search result page of the opencart site """
 

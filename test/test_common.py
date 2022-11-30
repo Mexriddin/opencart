@@ -4,7 +4,7 @@ import allure
 from opencart.tools.page_container import PageContainer
 
 
-@allure.feature('Base page')
+@allure.feature('Base Page')
 class TestCommon:
     """ Test opencart store"""
 

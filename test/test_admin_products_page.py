@@ -4,7 +4,7 @@ from opencart.tools.page_container import PageContainer
 from opencart.page_objects.locators.admin_products_page_locators import AdminProductsPageLocators
 
 
-@allure.feature("Admin product page")
+@allure.feature("Admin Product Page")
 class TestAdminProductPage:
     """" Tests of the admin products page of the opencart site """
 

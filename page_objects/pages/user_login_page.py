@@ -35,3 +35,9 @@ class UserLoginPage(BasePage):
         self._type(ll.EMAIL_FIELD, email)
         self._type(ll.PASSWORD_FIELD, password)
         self._click(ll.SUBMIT_BUTTON)
+
+    def logout_user(self):
+        """ Logout from user account"""
+        with allure.step("Logout from user account"):
+            self._click(ll.USER_MENU)
+            self._click(ll.LOGOUT_BUTTON)

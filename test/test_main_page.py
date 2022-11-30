@@ -4,7 +4,7 @@ import pytest
 from opencart.tools.page_container import PageContainer
 
 
-@allure.feature('Main page')
+@allure.feature('Main Page')
 class TestMainPage:
     """ Tests of the main page of the opencart site """
 

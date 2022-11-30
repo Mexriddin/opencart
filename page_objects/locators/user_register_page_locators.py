@@ -24,3 +24,7 @@ class UserLoginPageLocators:
     EMAIL_FIELD = (By.CSS_SELECTOR, "#input-email")
     PASSWORD_FIELD = (By.CSS_SELECTOR, "#input-password")
     SUBMIT_BUTTON = (By.CSS_SELECTOR, "input[type='submit'][value='Войти']")
+    ALERT_DANGER = (By.CLASS_NAME, 'alert-danger')
+
+    USER_MENU = (By.CLASS_NAME, "fa-user")
+    LOGOUT_BUTTON = (By.CSS_SELECTOR, ".dropdown-menu-right > :nth-child(5)")
