@@ -1,5 +1,5 @@
 import random
-from .datas import User
+from opencart.tools.data.datas import User
 from faker import Faker
 
 faker_en = Faker('En')

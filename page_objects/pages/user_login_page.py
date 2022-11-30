@@ -3,7 +3,6 @@ import allure
 
 from opencart.page_objects.pages.base_page import BasePage
 from opencart.page_objects.locators.base_page_locators import BasePageLocators
-from opencart.tools.data.generator import generated_user
 from opencart.page_objects.locators.user_register_page_locators import UserLoginPageLocators as ll
 
 
