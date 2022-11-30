@@ -1,4 +1,4 @@
-""" Methods of the search user login page of the opencart site"""
+""" Methods of the user login page of the opencart site"""
 import allure
 
 from opencart.page_objects.pages.base_page import BasePage

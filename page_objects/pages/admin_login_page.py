@@ -1,4 +1,4 @@
-""" Methods of the search admin login page of the opencart site"""
+""" Methods of the admin login page of the opencart site"""
 import allure
 
 from opencart.page_objects.pages.base_page import BasePage
