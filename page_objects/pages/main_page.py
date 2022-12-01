@@ -19,7 +19,7 @@ class MainPage(BasePage):
             self.browser.get(self.browser.base_url)
 
     def checking_presence_elements_main_page(self):
-        """ Checking the presence of main elements on the main page """
+        """ Method checking the presence of main elements on the main page """
 
         with allure.step("Checking the presence of main elements on the main page"):
             locators = [bl.PHONE, bl.USER_MENU, bl.WISH_LIST, bl.SHOPPING_CART, bl.PHONE,
@@ -27,5 +27,5 @@ class MainPage(BasePage):
                         ml.MAIN_SLIDER, ml.FOOTER_SLIDER, ml.FEATURED_CARD_1, ml.FEATURED_CARD_2,
                         ml.FEATURED_CARD_3, ml.FEATURED_CARD_4]
             for locator in locators:
-                self._verify_element_presence(locator)
+                self.is_displayed(locator)
 

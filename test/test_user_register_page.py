@@ -1,4 +1,5 @@
 import allure
+from opencart.tools.generator import generated_user
 import pytest
 
 from opencart.tools.page_container import PageContainer
@@ -30,8 +31,10 @@ class TestUserRegisterPage:
     @allure.title("Checking valid register a new user on the user register page")
     def test_user_register_valid(self, browser):
         """ Checking valid register a new user on the user register page """
+        user = generated_user()
         page = PageContainer(browser)
         browser.get(browser.base_url)
         page.user_register.go_to_user_register_page()
-        page.user_register.valid_user_register()
+        page.user_register.user_register(user.first_name, user.last_name, user.email,
+                                         user.phone, user.password, user.password)
         assert browser.title == "Ваша учетная запись создана!"

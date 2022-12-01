@@ -16,13 +16,11 @@ class BasePage:
         self.browser = browser
 
     def _verify_element_presence(self, locator):
-        """Method waiting for an element to present """
-        with allure.step("Wait element presence" + str(locator)):
-            try:
-                return WebDriverWait(self.browser, self.browser.t).\
-                    until(EC.visibility_of_element_located(locator))
-            except TimeoutException:
-                raise AssertionError(f"Cant find element by locator: {locator}")
+        try:
+            return WebDriverWait(self.browser, self.browser.t).\
+                until(EC.visibility_of_element_located(locator))
+        except TimeoutException:
+            raise AssertionError(f"Cant find element by locator: {locator}")
 
     def _verify_link_presence(self, link_text):
         """Method waiting for a link to present """
@@ -34,20 +32,24 @@ class BasePage:
                 raise AssertionError(f"Cant find element by link text: {link_text}")
 
     def _element(self, locator):
-        with allure.step("Element to present" + str(locator)):
-            return self._verify_element_presence(locator)
+        return self._verify_element_presence(locator)
 
-    def _click(self, locator):
-        with allure.step("Element to click" + str(locator)):
+    def _click(self, locator, element_name):
+        with allure.step(f"Click on an element: {element_name}"):
             element = self._element(locator)
             ActionChains(self.browser).pause(0.3).move_to_element(element).click().perform()
 
-    def _type(self, locator, value):
+    def _type(self, locator, value, input_name):
         """ Method for filling field """
-        with allure.step(f"Fill {locator}: {value}"):
+        with allure.step(f"Fill {input_name}: {value}"):
             field = self._element(locator)
             field.clear()
             field.send_keys(value)
+
+    def is_displayed(self, locator):
+        """Method waiting for an element to present """
+        with allure.step("Element presence" + str(locator)):
+            self._verify_element_presence(locator)
 
     def close_security_alert(self):
         """ Closing warning window on page load """
@@ -78,8 +80,8 @@ class BasePage:
             locator = BasePageLocators.CURRENCY_ITEM_USD
         else:
             raise RuntimeError("Unsupported currency!")
-        self._click(BasePageLocators.CHOOSE_CURRENCY)
-        self._click(locator)
+        self._click(BasePageLocators.CHOOSE_CURRENCY, "Currency menu")
+        self._click(locator, f"{to}")
 
     @allure.step("Get currency text")
     def get_currency_text_from_main_nav(self):
@@ -94,8 +96,8 @@ class BasePage:
         else:
             raise RuntimeError("Unsupported language!")
 
-        self._click(BasePageLocators.CHOOSE_LANGUAGE)
-        self._click(locator)
+        self._click(BasePageLocators.CHOOSE_LANGUAGE, "Language menu")
+        self._click(locator, f"{to}")
 
     @allure.step("Get language title")
     def get_language_text_from_main_nav(self):

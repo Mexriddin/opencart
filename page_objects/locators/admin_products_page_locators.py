@@ -15,16 +15,17 @@ class AdminProductsPageLocators:
 
     PRODUCT_FORM = (By.CSS_SELECTOR, "#form-product")
     PRODUCT_FORM_GENERAL = (By.ID, "tab-general")
-    PRODUCT_FORM_DATA = (By.LINK_TEXT, "Data")
-    PRODUCT_FORM_IMAGE = (By.LINK_TEXT, "Image")
+    PRODUCT_FORM_DATA = (By.LINK_TEXT, "Данные")
+    PRODUCT_FORM_IMAGE = (By.LINK_TEXT, "Изображения")
 
-    PRODUCT_FORM_GENERAL_NAME_FIELD = (By.ID, "#input-name1")
-    PRODUCT_FORM_GENERAL_TAG_FIELD = (By.ID, "#input-meta-title1")
+    PRODUCT_FORM_GENERAL_NAME_FIELD = (By.ID, "input-name1")
+    PRODUCT_FORM_GENERAL_TAG_FIELD = (By.ID, "input-meta-title1")
     PRODUCT_FORM_DATA_MODEL_FIELD = (By.ID, "input-model")
     PRODUCT_FORM_IMAGE_ADD_IMAGE = (By.CSS_SELECTOR, "#tab-image #thumb-image")
     PRODUCT_FORM_IMAGE_SELECT_IMAGE = (By.CSS_SELECTOR, ".popover .fa-pencil")
     PRODUCT_FORM_IMAGE_UPLOAD_IMAGE = (By.CSS_SELECTOR, "button .fa-upload")
     PRODUCT_FORM_IMAGE_REFRESH = (By.CSS_SELECTOR, "#button-refresh.btn")
+    PRODUCT_FORM_IMAGE_JPG = (By.CSS_SELECTOR, "[title='Lava_Lamp_Colo r_Bubbles.jpg']")
 
     FILTER_BUTTON = (By.ID, "button-filter")
     FILTER_INPUT_NAME = (By.ID, "input-name")

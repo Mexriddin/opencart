@@ -16,13 +16,13 @@ class ProductPage(BasePage):
         """ Method open product page of the opencart site """
 
         with allure.step("Go to product page"):
-            self._click(BasePageLocators.PRODUCT_ITEM)
+            self._click(BasePageLocators.PRODUCT_ITEM, "Product item")
 
     def checking_presence_elements_product_page(self):
-        """ Checking the presence of main elements on the product page """
+        """ Method checking the presence of main elements on the product page """
 
         with allure.step("Checking the presence of main elements on the search result page"):
             locators = [pl.PRODUCT_IMAGE, pl.DESCRIPTION_TAB, pl.DESCRIPTION_CONTENT, pl.SPECIFICATION_TAB,
                         pl.PRODUCT_SETTINGS, pl.ADD_TO_CART_BUTTON]
             for locator in locators:
-                self._verify_element_presence(locator)
+                self.is_displayed(locator)

@@ -16,10 +16,10 @@ class SearchResultPage(BasePage):
         """ Method open search result page of the opencart site """
 
         with allure.step("Go to search result page"):
-            self._click(BasePageLocators.SEARCH_BUTTON)
+            self._click(BasePageLocators.SEARCH_BUTTON, "Search button")
 
     def checking_presence_elements_search_result_page(self):
-        """ Checking the presence of main elements on the search result page """
+        """ Method checking the presence of main elements on the search result page """
 
         with allure.step("Checking the presence of main elements on the search result page"):
             locators = [sl.SEARCH_INPUT, sl.CATEGORY_LIST, sl.CATEGORY_DESKTOPS,
@@ -28,4 +28,4 @@ class SearchResultPage(BasePage):
                         sl.CATEGORY_MP3_PLAYERS, sl.SUBCATEGORIES_CHECKBOX, sl.SEARCH_BUTTON,
                         sl.SEARCH_IN_PRODUCT_DESCRIPTION]
             for locator in locators:
-                self._verify_element_presence(locator)
+                self.is_displayed(locator)

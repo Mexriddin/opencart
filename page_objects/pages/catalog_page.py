@@ -18,7 +18,7 @@ class CatalogPage(BasePage):
             self.browser.get(self.browser.base_url + self.path)
 
     def checking_presence_elements_catalog_page(self):
-        """ Checking the presence of main elements on the catalog page """
+        """ Method checking the presence of main elements on the catalog page """
 
         with allure.step("Checking the presence of main elements on the catalog page"):
             locators = [cl.MENU_LEFT, cl.LIST_VIEW_BUTTON, cl.GRID_VIEW_BUTTON, cl.PROMO_BANNER,
@@ -26,4 +26,4 @@ class CatalogPage(BasePage):
                         cl.PRODUCT_CARD_NAME_LINK, cl.PRODUCT_CARD_ADD_CARD, cl.PRODUCT_CARD_COMPARE,
                         cl.PRODUCT_CARD_ADD_WISHLIST]
             for locator in locators:
-                self._verify_element_presence(locator)
+                self.is_displayed(locator)

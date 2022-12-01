@@ -1,6 +1,7 @@
 import allure
 
 from opencart.tools.page_container import PageContainer
+from opencart.tools.generator import generated_product
 from opencart.page_objects.locators.admin_products_page_locators import AdminProductsPageLocators
 
 
@@ -30,3 +31,15 @@ class TestAdminProductPage:
         page.admin_login.login_to_admin(page.admin_login.login, page.admin_login.password)
         page.admin_products.go_to_admin_products_page()
         page.admin_products.checking_presence_elements_admin_products_page()
+
+    @allure.title("Checking add a new product")
+    def test_add_new_product(self, browser):
+        """ Checking creation of a new product """
+        product = generated_product()
+        page = PageContainer(browser)
+        browser.get(browser.base_url)
+        page.admin_login.go_to_admin_login_page()
+        page.admin_login.login_to_admin(page.admin_login.login, page.admin_login.password)
+        page.admin_products.go_to_admin_products_page()
+        page.admin_products.create_new_product(product.product_name, product.product_tag, product.product_model)
+        assert page.admin_products._element(AdminProductsPageLocators.SUCCESS_ALERT)

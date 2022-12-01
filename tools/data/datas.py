@@ -8,3 +8,10 @@ class User:
     email: str = None
     phone: str = None
     password: str = None
+
+
+@dataclass
+class Product:
+    product_name: str = None
+    product_tag: str = None
+    product_model: str = None

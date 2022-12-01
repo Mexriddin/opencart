@@ -1,6 +1,7 @@
 import random
-from opencart.tools.data.datas import User
+from opencart.tools.data.datas import User, Product
 from faker import Faker
+
 
 faker_en = Faker('En')
 
@@ -13,3 +14,13 @@ def generated_user():
         phone=faker_en.msisdn(),
         password=faker_en.msisdn()
     )
+
+
+def generated_product():
+    return Product(
+        product_name="product_test_name:" + faker_en.name(),
+        product_tag="test_tag",
+        product_model="test_model"
+    )
+
+
