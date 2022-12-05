@@ -17,3 +17,5 @@ class TestCatalogPage:
         page.tests_logger.info('test_catalog_page_finds_elements')
         page.catalog.go_to_catalog_page()
         page.catalog.checking_presence_elements_catalog_page()
+
+        assert "ERROR" not in str(browser.get_log("browser"))

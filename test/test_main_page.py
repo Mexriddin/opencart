@@ -18,6 +18,8 @@ class TestMainPage:
         page.main.go_to_main_page()
         page.main.checking_presence_elements_main_page()
 
+        assert "ERROR" not in str(browser.get_log("browser"))
+
     @allure.title("Checking switch currency")
     @pytest.mark.parametrize("currency, currency_label", [("EUR", "€"), ("RUB", "руб."), ("USD", "$")])
     def test_switch_currency_from_main_nav(self, browser, currency, currency_label):
@@ -26,7 +28,9 @@ class TestMainPage:
         page.tests_logger.info('test_switch_currency_from_main_nav')
         page.main.go_to_main_page()
         page.main.switch_currency_in_main_nav(to=currency)
+
         assert page.main.get_currency_text_from_main_nav() == f"{currency_label} Валюта "
+        assert "ERROR" not in str(browser.get_log("browser"))
 
     @allure.title("Checking switch language")
     @pytest.mark.parametrize("language, language_label", [("eng", "Language"), ("ru", "Язык")])
@@ -36,6 +40,8 @@ class TestMainPage:
         page.tests_logger.info('test_switch_language_from_main_nav')
         page.main.go_to_main_page()
         page.main.switch_language_in_main_nav(to=language)
+
         assert page.main.get_language_text_from_main_nav() == f"{language_label} "
+        assert "ERROR" not in str(browser.get_log("browser"))
 
 

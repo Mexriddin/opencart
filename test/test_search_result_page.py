@@ -19,7 +19,9 @@ class TestSearchResult:
         page.tests_logger.info('test_go_to_search_result_page')
         browser.get(browser.base_url)
         page.search_result.go_to_search_result_page()
+
         assert page.search_result.get_text_element(SearchPageLocators.SEARCH_CONTENT) == "Поиск"
+        assert "ERROR" not in str(browser.get_log("browser"))
 
     @allure.title("Checking the presence of main elements on the main page")
     def test_search_result_page_finds_elements(self, browser):
@@ -29,3 +31,5 @@ class TestSearchResult:
         page.main.go_to_main_page()
         page.search_result.go_to_search_result_page()
         page.search_result.checking_presence_elements_search_result_page()
+
+        assert "ERROR" not in str(browser.get_log("browser"))

@@ -18,4 +18,6 @@ class TestCommon:
         page.tests_logger.info('test_opencart_main_page_is_open')
         browser.get(browser.base_url)
         homepage_url = browser.current_url
+
         assert "opencart" in homepage_url
+        assert "ERROR" not in str(browser.get_log("browser"))

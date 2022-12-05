@@ -25,4 +25,4 @@ class LogListener(AbstractEventListener):
 
     def on_exception(self, exception, driver):
         logging.info('Exception: %s', exception)
-        driver.get_screnshot_as_file(f'logs/{exception}.png')
+        driver.get_screenshot_as_file(f'logs/{exception}.png')

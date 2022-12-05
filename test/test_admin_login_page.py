@@ -18,9 +18,10 @@ class TestAdminLoginPage:
         page = PageContainer(browser)
         page.tests_logger.info('test_go_to_admin_login_page')
         browser.get(browser.base_url)
-
         page.admin_login.go_to_admin_login_page()
+
         assert page.admin_login.get_text_element(AdminAuthPageLocators.FORM_TITLE) == "Введите логин и пароль"
+        assert "ERROR" not in str(browser.get_log("browser"))
 
     @allure.title("Checking the presence of main elements on the admin login page")
     def test_login_page_finds_elements(self, browser):
@@ -31,6 +32,8 @@ class TestAdminLoginPage:
         page.admin_login.go_to_admin_login_page()
         page.admin_login.checking_presence_elements_admin_login_page()
 
+        assert "ERROR" not in str(browser.get_log("browser"))
+
     @allure.title("Checking valid login an administrator ")
     def test_login_to_admin_valid(self, browser):
         """ Checking valid register a new user on the user login page """
@@ -39,7 +42,9 @@ class TestAdminLoginPage:
         browser.get(browser.base_url)
         page.admin_login.go_to_admin_login_page()
         page.admin_login.login_to_admin(page.admin_login.login, page.admin_login.password)
+
         assert browser.title == "Панель состояния"
+        assert "ERROR" not in str(browser.get_log("browser"))
 
     @allure.title("Checking invalid login an administrator ")
     @pytest.mark.parametrize("login, password", [(page.admin_login.login, "1234"),
@@ -53,7 +58,9 @@ class TestAdminLoginPage:
         browser.get(browser.base_url)
         page.admin_login.go_to_admin_login_page()
         page.admin_login.login_to_admin(login, password)
+
         assert page.admin_login._verify_element_presence(AdminAuthPageLocators.ALERT_DANGER)
+        assert "ERROR" not in str(browser.get_log("browser"))
 
     @allure.title("Checking logout from admin account")
     def test_logout_from_admin_account(self, browser):
@@ -64,4 +71,6 @@ class TestAdminLoginPage:
         page.admin_login.go_to_admin_login_page()
         page.admin_login.login_to_admin(page.admin_login.login, page.admin_login.password)
         page.admin_login.logout_from_admin()
+
         assert page.admin_login.get_text_element(AdminAuthPageLocators.FORM_TITLE) == "Введите логин и пароль"
+        assert "ERROR" not in str(browser.get_log("browser"))

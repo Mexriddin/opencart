@@ -19,7 +19,9 @@ class TestProductPage:
         page.tests_logger.info('test_go_to_product_page')
         browser.get(browser.base_url)
         page.product.go_to_product_page()
+
         assert page.search_result.get_text_element(ProductPageLocators.PRODUCT_TITLE) == "MacBook"
+        assert "ERROR" not in str(browser.get_log("browser"))
 
     @allure.title("Checking the presence of main elements on the product page")
     def test_catalog_page_finds_elements(self, browser):
@@ -29,3 +31,5 @@ class TestProductPage:
         browser.get(browser.base_url)
         page.product.go_to_product_page()
         page.product.checking_presence_elements_product_page()
+
+        assert "ERROR" not in str(browser.get_log("browser"))

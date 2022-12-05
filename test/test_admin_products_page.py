@@ -21,7 +21,9 @@ class TestAdminProductPage:
         page.admin_login.go_to_admin_login_page()
         page.admin_login.login_to_admin(page.admin_login.login, page.admin_login.password)
         page.admin_products.go_to_admin_products_page()
+
         assert browser.title == "Товары"
+        assert "ERROR" not in str(browser.get_log("browser"))
 
     @allure.title("Checking the presence of main elements on the product page")
     def test_catalog_page_finds_elements(self, browser):
@@ -34,6 +36,8 @@ class TestAdminProductPage:
         page.admin_products.go_to_admin_products_page()
         page.admin_products.checking_presence_elements_admin_products_page()
 
+        assert "ERROR" not in str(browser.get_log("browser"))
+
     @allure.title("Checking add a new product")
     def test_add_new_product(self, browser):
         """ Checking creation of a new product """
@@ -45,4 +49,6 @@ class TestAdminProductPage:
         page.admin_login.login_to_admin(page.admin_login.login, page.admin_login.password)
         page.admin_products.go_to_admin_products_page()
         page.admin_products.create_new_product(product.product_name, product.product_tag, product.product_model)
+
         assert page.admin_products._element(AdminProductsPageLocators.SUCCESS_ALERT)
+        assert "ERROR" not in str(browser.get_log("browser"))

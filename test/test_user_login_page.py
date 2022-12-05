@@ -19,7 +19,9 @@ class TestUserLoginPage:
         page.tests_logger.info('test_go_to_user_login_page')
         browser.get(browser.base_url)
         page.user_login.go_to_user_login_page()
+
         assert browser.title == "Авторизация"
+        assert "ERROR" not in str(browser.get_log("browser"))
 
     @allure.title("Checking the presence of main elements on the user login page")
     def test_login_page_finds_elements(self, browser):
@@ -30,6 +32,8 @@ class TestUserLoginPage:
         page.user_login.go_to_user_login_page()
         page.user_login.checking_presence_elements_user_login_page()
 
+        assert "ERROR" not in str(browser.get_log("browser"))
+
     @allure.title("Checking valid login a new user on the user login page")
     def test_user_login_valid(self, browser):
         """ Checking valid register a new user on the user login page """
@@ -38,7 +42,9 @@ class TestUserLoginPage:
         browser.get(browser.base_url)
         page.user_login.go_to_user_login_page()
         page.user_login.login_user(page.user_login.email, page.user_login.password)
+
         assert browser.title == "Личный Кабинет"
+        assert "ERROR" not in str(browser.get_log("browser"))
 
     @allure.title("Checking invalid login a new user on the user login page")
     @pytest.mark.parametrize("email, password", [(page.user_login.email, "1234"),
@@ -52,7 +58,9 @@ class TestUserLoginPage:
         browser.get(browser.base_url)
         page.user_login.go_to_user_login_page()
         page.user_login.login_user(email, password)
+
         assert page.admin_login._verify_element_presence(UserLoginPageLocators.ALERT_DANGER)
+        assert "ERROR" not in str(browser.get_log("browser"))
 
     @allure.title("Checking logout from user account")
     def test_logout_from_user_account(self, browser):
@@ -63,4 +71,6 @@ class TestUserLoginPage:
         page.user_login.go_to_user_login_page()
         page.user_login.login_user(page.user_login.email, page.user_login.password)
         page.user_login.logout_user()
+
         assert page.admin_login.get_text_element(UserRegisterPageLocators.CONTENT_TITLE) == "Личный кабинет"
+        assert "ERROR" not in str(browser.get_log("browser"))
