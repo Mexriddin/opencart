@@ -8,13 +8,14 @@ from opencart.page_objects.locators.catalog_page_locators import CatalogPageLoca
 class CatalogPage(BasePage):
     """ Methods of the catalog page of the opencart site """
 
-    def __init__(self, browser):
-        super().__init__(browser)
+    def __init__(self, logger, browser):
+        super().__init__(logger, browser)
         self.path = "/index.php?route=product/category&path=20"
 
     def go_to_catalog_page(self):
         """ Method open catalog page of the opencart site """
         with allure.step("Go to catalog page"):
+            self.logger.info("User is on the Catalog Page")
             self.browser.get(self.browser.base_url + self.path)
 
     def checking_presence_elements_catalog_page(self):

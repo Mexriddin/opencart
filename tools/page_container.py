@@ -1,4 +1,5 @@
 """ Class with class instances of all pages """
+import logging
 
 from opencart.page_objects.pages.main_page import MainPage
 from opencart.page_objects.pages.search_result_page import SearchResultPage
@@ -14,11 +15,13 @@ class PageContainer:
     """ Class with class instances of all pages """
 
     def __init__(self, browser):
-        self.main = MainPage(browser)
-        self.search_result = SearchResultPage(browser)
-        self.catalog = CatalogPage(browser)
-        self.product = ProductPage(browser)
-        self.user_register = UserRegisterPage(browser)
-        self.user_login = UserLoginPage(browser)
-        self.admin_login = AdminLoginPage(browser)
-        self.admin_products = AdminProductsPage(browser)
+        self.logger = logging.getLogger("PAGE NAME")
+        self.tests_logger = logging.getLogger("TEST NAME")
+        self.main = MainPage(self.logger, browser)
+        self.search_result = SearchResultPage(self.logger, browser)
+        self.catalog = CatalogPage(self.logger, browser)
+        self.product = ProductPage(self.logger, browser)
+        self.user_register = UserRegisterPage(self.logger, browser)
+        self.user_login = UserLoginPage(self.logger, browser)
+        self.admin_login = AdminLoginPage(self.logger, browser)
+        self.admin_products = AdminProductsPage(self.logger, browser)

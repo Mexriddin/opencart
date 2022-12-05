@@ -16,6 +16,7 @@ class TestUserLoginPage:
         """ Checking the go to the user login page """
 
         page = PageContainer(browser)
+        page.tests_logger.info('test_go_to_user_login_page')
         browser.get(browser.base_url)
         page.user_login.go_to_user_login_page()
         assert browser.title == "Авторизация"
@@ -24,6 +25,7 @@ class TestUserLoginPage:
     def test_login_page_finds_elements(self, browser):
         """ Checking the presence of main elements on the user login page """
         page = PageContainer(browser)
+        page.tests_logger.info('test_login_page_finds_elements')
         browser.get(browser.base_url)
         page.user_login.go_to_user_login_page()
         page.user_login.checking_presence_elements_user_login_page()
@@ -32,6 +34,7 @@ class TestUserLoginPage:
     def test_user_login_valid(self, browser):
         """ Checking valid register a new user on the user login page """
         page = PageContainer(browser)
+        page.tests_logger.info('test_user_login_valid')
         browser.get(browser.base_url)
         page.user_login.go_to_user_login_page()
         page.user_login.login_user(page.user_login.email, page.user_login.password)
@@ -45,6 +48,7 @@ class TestUserLoginPage:
     def test_user_login_invalid(self, browser, email, password):
         """ Checking invalid register a new user on the user login page """
         page = PageContainer(browser)
+        page.tests_logger.info('test_user_login_invalid')
         browser.get(browser.base_url)
         page.user_login.go_to_user_login_page()
         page.user_login.login_user(email, password)
@@ -54,6 +58,7 @@ class TestUserLoginPage:
     def test_logout_from_user_account(self, browser):
         """ Checking logout from user account """
         page = PageContainer(browser)
+        page.tests_logger.info('test_logout_from_user_account')
         browser.get(browser.base_url)
         page.user_login.go_to_user_login_page()
         page.user_login.login_user(page.user_login.email, page.user_login.password)

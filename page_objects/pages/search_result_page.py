@@ -9,13 +9,14 @@ from opencart.page_objects.locators.search_page_locators import SearchPageLocato
 class SearchResultPage(BasePage):
     """ Methods of the search result page of the opencart site"""
 
-    def __init__(self, browser):
-        super().__init__(browser)
+    def __init__(self, logger, browser):
+        super().__init__(logger, browser)
 
     def go_to_search_result_page(self):
         """ Method open search result page of the opencart site """
 
         with allure.step("Go to search result page"):
+            self.logger.info("User is on the Search Result Page")
             self._click(BasePageLocators.SEARCH_BUTTON, "Search button")
 
     def checking_presence_elements_search_result_page(self):

@@ -8,8 +8,8 @@ from opencart.page_objects.locators.admin_auth_page_locators import AdminAuthPag
 class AdminLoginPage(BasePage):
     """ Methods of the admin login page of the opencart site"""
 
-    def __init__(self, browser):
-        super().__init__(browser)
+    def __init__(self, logger, browser):
+        super().__init__(logger, browser)
         self.path = "/admin/index.php?route=common/login"
 
     login = "demo"
@@ -19,6 +19,7 @@ class AdminLoginPage(BasePage):
         """ Method open admin login page of the opencart site """
 
         with allure.step("Go to admin login page"):
+            self.logger.info("User is on the Admin Login Page")
             self.browser.get(self.browser.base_url + self.path)
 
     def checking_presence_elements_admin_login_page(self):

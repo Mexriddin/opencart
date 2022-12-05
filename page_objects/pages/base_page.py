@@ -12,7 +12,8 @@ from opencart.page_objects.locators.base_page_locators import BasePageLocators
 class BasePage:
     """ Methods of the base page of the opencart site """
 
-    def __init__(self, browser):
+    def __init__(self, logger, browser):
+        self.logger = logger
         self.browser = browser
 
     def _verify_element_presence(self, locator):

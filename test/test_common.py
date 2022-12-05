@@ -15,6 +15,7 @@ class TestCommon:
         """ Checking opencart site page opening """
 
         page = PageContainer(browser=browser)
+        page.tests_logger.info('test_opencart_main_page_is_open')
         browser.get(browser.base_url)
         homepage_url = browser.current_url
         assert "opencart" in homepage_url

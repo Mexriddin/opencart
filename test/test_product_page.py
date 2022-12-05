@@ -16,6 +16,7 @@ class TestProductPage:
         """ Checking the go to the product page """
 
         page = PageContainer(browser)
+        page.tests_logger.info('test_go_to_product_page')
         browser.get(browser.base_url)
         page.product.go_to_product_page()
         assert page.search_result.get_text_element(ProductPageLocators.PRODUCT_TITLE) == "MacBook"
@@ -24,6 +25,7 @@ class TestProductPage:
     def test_catalog_page_finds_elements(self, browser):
         """ Checking the presence of main elements on the product page """
         page = PageContainer(browser)
+        page.tests_logger.info('test_catalog_page_finds_elements')
         browser.get(browser.base_url)
         page.product.go_to_product_page()
         page.product.checking_presence_elements_product_page()

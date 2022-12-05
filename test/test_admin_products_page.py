@@ -16,6 +16,7 @@ class TestAdminProductPage:
         """ Checking the go to the admin products page """
 
         page = PageContainer(browser)
+        page.tests_logger.info('test_go_to_admin_products_page')
         browser.get(browser.base_url)
         page.admin_login.go_to_admin_login_page()
         page.admin_login.login_to_admin(page.admin_login.login, page.admin_login.password)
@@ -26,6 +27,7 @@ class TestAdminProductPage:
     def test_catalog_page_finds_elements(self, browser):
         """ Checking the presence of main elements on the admin products page """
         page = PageContainer(browser)
+        page.tests_logger.info('test_catalog_page_finds_elements')
         browser.get(browser.base_url)
         page.admin_login.go_to_admin_login_page()
         page.admin_login.login_to_admin(page.admin_login.login, page.admin_login.password)
@@ -37,6 +39,7 @@ class TestAdminProductPage:
         """ Checking creation of a new product """
         product = generated_product()
         page = PageContainer(browser)
+        page.tests_logger.info('test_add_new_product')
         browser.get(browser.base_url)
         page.admin_login.go_to_admin_login_page()
         page.admin_login.login_to_admin(page.admin_login.login, page.admin_login.password)

@@ -9,13 +9,14 @@ from opencart.page_objects.locators.user_register_page_locators import UserRegis
 class UserRegisterPage(BasePage):
     """ Methods of the user register page of the opencart site"""
 
-    def __init__(self, browser):
-        super().__init__(browser)
+    def __init__(self, logger, browser):
+        super().__init__(logger, browser)
 
     def go_to_user_register_page(self):
         """ Method open user register page of the opencart site """
 
         with allure.step("Go to user register page"):
+            self.logger.info("User is on the Register Page")
             self._click(BasePageLocators.USER_MENU, "User menu")
             self._click(BasePageLocators.USER_MENU_ITEM_REGISTER, "Register item")
 

@@ -16,6 +16,7 @@ class TestUserRegisterPage:
         """ Checking the go to the user register page """
 
         page = PageContainer(browser)
+        page.tests_logger.info('test_go_to_user_register_page')
         browser.get(browser.base_url)
         page.user_register.go_to_user_register_page()
         assert browser.title == "Регистрация"
@@ -24,6 +25,7 @@ class TestUserRegisterPage:
     def test_register_page_finds_elements(self, browser):
         """ Checking the presence of main elements on the user register page """
         page = PageContainer(browser)
+        page.tests_logger.info('test_register_page_finds_elements')
         browser.get(browser.base_url)
         page.user_register.go_to_user_register_page()
         page.user_register.checking_presence_elements_user_register_page()
@@ -33,6 +35,7 @@ class TestUserRegisterPage:
         """ Checking valid register a new user on the user register page """
         user = generated_user()
         page = PageContainer(browser)
+        page.tests_logger.info('test_user_register_valid')
         browser.get(browser.base_url)
         page.user_register.go_to_user_register_page()
         page.user_register.user_register(user.first_name, user.last_name, user.email,

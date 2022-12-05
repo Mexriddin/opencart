@@ -9,8 +9,8 @@ from opencart.page_objects.locators.user_register_page_locators import UserLogin
 class UserLoginPage(BasePage):
     """ Methods of the user login page of the opencart site"""
 
-    def __init__(self, browser):
-        super().__init__(browser)
+    def __init__(self, logger, browser):
+        super().__init__(logger, browser)
 
     email = "test123@gmail.com"
     password = "test123"
@@ -19,6 +19,7 @@ class UserLoginPage(BasePage):
         """ Method open user login page of the opencart site """
 
         with allure.step("Go to user login page"):
+            self.logger.info("User is on the Login Page")
             self._click(BasePageLocators.USER_MENU, "User menu")
             self._click(BasePageLocators.USER_MENU_ITEM_LOGIN, "Login item")
 

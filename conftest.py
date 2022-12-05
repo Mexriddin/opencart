@@ -1,6 +1,9 @@
 import pytest
 import allure
+import logging
 from selenium import webdriver
+from selenium.webdriver.support.events import EventFiringWebDriver
+from opencart.tools.listener_log import LogListener
 from selenium.webdriver.chrome.service import Service as chromeS
 from selenium.webdriver.firefox.service import Service as firefoxS
 from selenium.webdriver.support.wait import WebDriverWait
@@ -18,10 +21,10 @@ def pytest_addoption(parser):
                      help="This is time parameter for driver wait")
     parser.addoption("--implicitly_wait", default=3,
                      help="This is time parameter for driver implicitly wait")
-    # parser.addoption("--log_file", default=None,
-    #                  help="This is a file address, where selenium logs will be")
-    # parser.addoption("--log_level", default="INFO",
-    #                  help="This is a log level parameter")
+    parser.addoption("--log_file", default=None,
+                     help="This is a file address, where selenium logs will be")
+    parser.addoption("--log_level", default="INFO",
+                     help="This is a log level parameter")
     parser.addoption("--brversion", default="105", help="This is version remote browser")
     parser.addoption("--executor", default="local", help="Choose execute: local, remote")
     parser.addoption("--vnc", action="store_true", default=True)
@@ -70,6 +73,9 @@ def driver_factory(browser, brversion, executor, vnc, video, implicitly_wait):
 
 @pytest.fixture(scope="function")
 def browser(request):
+
+    logging.info('====Browser Fixture Started====')
+
     browser = request.config.getoption("--browser")
     brversion = request.config.getoption("--brversion")
     executor = request.config.getoption("--executor")
@@ -77,10 +83,11 @@ def browser(request):
     video = request.config.getoption("--video")
     implicitly_wait = request.config.getoption("--implicitly_wait")
 
-    driver = driver_factory(browser=browser, brversion=brversion,
-                            executor=executor, vnc=vnc, video=video,
-                            implicitly_wait=implicitly_wait)
+    web_driver = driver_factory(browser=browser, brversion=brversion,
+                                executor=executor, vnc=vnc, video=video,
+                                implicitly_wait=implicitly_wait)
 
+    driver = EventFiringWebDriver(web_driver, LogListener(request))
     driver.t = request.config.getoption("--wait")
     driver.base_url = request.config.getoption("--url")
 
@@ -91,7 +98,7 @@ def browser(request):
     )
     yield driver
     driver.quit()
-
+    logging.info('====Browser Fixture Finished====')
 
 # @pytest.fixture(scope="function")
 # def wait(browser, request):

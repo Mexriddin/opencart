@@ -9,13 +9,14 @@ from opencart.page_objects.locators.base_page_locators import BasePageLocators a
 class MainPage(BasePage):
     """ Methods of the main page of the opencart site """
 
-    def __init__(self, browser):
-        super().__init__(browser)
+    def __init__(self, logger, browser):
+        super().__init__(logger, browser)
 
     def go_to_main_page(self):
         """ Method open main page of the opencart site """
 
         with allure.step("Go to main page"):
+            self.logger.info("User is on the Main Page")
             self.browser.get(self.browser.base_url)
 
     def checking_presence_elements_main_page(self):

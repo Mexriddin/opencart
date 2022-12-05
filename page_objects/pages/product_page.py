@@ -9,13 +9,14 @@ from opencart.page_objects.locators.product_page_locators import ProductPageLoca
 class ProductPage(BasePage):
     """ Methods of the products' page of the opencart site"""
 
-    def __init__(self, browser):
-        super().__init__(browser)
+    def __init__(self, logger, browser):
+        super().__init__(logger, browser)
 
     def go_to_product_page(self):
         """ Method open product page of the opencart site """
 
         with allure.step("Go to product page"):
+            self.logger.info("User is on the Product Page")
             self._click(BasePageLocators.PRODUCT_ITEM, "Product item")
 
     def checking_presence_elements_product_page(self):

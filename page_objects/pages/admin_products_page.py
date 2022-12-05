@@ -8,13 +8,14 @@ from opencart.page_objects.locators.admin_products_page_locators import AdminPro
 class AdminProductsPage(BasePage):
     """ Methods of the admin products page of the opencart site"""
 
-    def __init__(self, browser):
-        super().__init__(browser)
+    def __init__(self, logger, browser):
+        super().__init__(logger, browser)
 
     def go_to_admin_products_page(self):
         """ Method open admin products page of the opencart site """
 
         with allure.step("Go to admin products page"):
+            self.logger.info("User is on the Admin Product Page")
             self._click(apl.CATALOG_MENU_ITEM, "Catalog menu")
             self._click(apl.PRODUCTS_MENU_ITEM, "Products menu")
 
