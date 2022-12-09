@@ -6,7 +6,6 @@ from selenium.webdriver.support.events import EventFiringWebDriver
 from opencart.tools.listener_log import LogListener
 from selenium.webdriver.chrome.service import Service as chromeS
 from selenium.webdriver.firefox.service import Service as firefoxS
-from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
@@ -52,7 +51,7 @@ def driver_factory(browser, brversion, executor, vnc, video, implicitly_wait):
         else:
             raise Exception("Browser not supported")
     elif executor == "remote":
-        executor_url = f"https://{executor}:4444/wd/hub"
+        executor_url = f"http://localhost:4444/wd/hub"
         caps = {
             "browserName": browser,
             "browserVersion": brversion,
